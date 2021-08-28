@@ -20,7 +20,7 @@ const conntroller = {
                meta: {
                    count: usersToSend.length,
                    status: 200,
-                   url: '/users/list'
+                   url: '/users'
                    
                },
                data: usersToSend,
@@ -43,7 +43,7 @@ const conntroller = {
             let response = {
                 meta : {
                     status: 200,
-                    url: `api/users/${user.id}`
+                    url: `/users/${user.id}`
                 },
                 data: {
                     firstname: user.firstname,

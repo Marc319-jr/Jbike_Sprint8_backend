@@ -62,7 +62,7 @@ const controller = {
                 meta : {
                     count: products.length,
                     status: 200,
-                    url: '/products/list'
+                    url: '/products'
                 },
               
                 categoryCount,
@@ -83,7 +83,47 @@ const controller = {
     },
 
     show: async (req,res) => {
-        return res.json("soy show")
+        
+        try{
+        let product = await db.Product.findByPk( req.params.id,  {include : ["colors" , "categories" , "sizes" , "brand"]})
+        /*
+        let prodcutToSend = {
+            brand: product.dataValues.brand.name,
+            model: product.dataValues.model,
+            desc: product.dataValues.desc1,
+            colors: product.dataValues.colors,
+            sizes: product.dataValues.sizes,
+            categories : product.dataValues.categories,
+            image: req.headers.host + `/image/products/${product.dataValues.image1}`
+
+        };
+        */
+        let response = {
+            meta: {
+                status: 200,
+                url: `/products/${product.id}`
+            },
+            data: {
+            brand: product.dataValues.brand.name,
+            model: product.dataValues.model,
+            desc: product.dataValues.desc1,
+            colors: product.dataValues.colors,
+            sizes: product.dataValues.sizes,
+            categories : product.dataValues.categories,
+            image: req.headers.host + `/image/productsimages/${product.dataValues.image1}`
+
+            }
+        }
+        return res.json(response)
+    } catch (error) {
+        console.log(error);
+        return res.status(500)
+    }
+
+
+        
+        
+        
     }
 
 

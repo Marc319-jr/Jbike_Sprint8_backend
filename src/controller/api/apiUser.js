@@ -40,6 +40,7 @@ const conntroller = {
     show: (req,res) => {
         db.User.findByPk(req.params.id , {include: ["address" , "genre"]})
         .then(user => {
+            console.log("Me pidieron los users");
             let response = {
                 meta : {
                     status: 200,

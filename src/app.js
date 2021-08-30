@@ -3,6 +3,8 @@ const express = require('express');
 const color = require('colors');
 const path = require('path');
 const app = express();
+const cors = require('cors')
+
 const cookies = require('cookie-parser');
 const session = require('express-session');
 
@@ -34,6 +36,7 @@ app.set('view engine', 'ejs');
 
 
 
+app.use(cors())
 
 
 //Api
@@ -47,7 +50,7 @@ app.use('/products' , productRouter);
 
 
 //Levantamos servidor y por si nos dan un puerto
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3003);
 app.listen(app.get('port'));
 console.log("Server on port".trap.random, app.get('port')); 
 

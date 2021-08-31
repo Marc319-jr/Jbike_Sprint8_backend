@@ -27,7 +27,7 @@ const conntroller = {
            };
 
      
-            res.json(response);
+            return res.json(response);
         } catch (error){
             console.log(error);
             return res.status(500)

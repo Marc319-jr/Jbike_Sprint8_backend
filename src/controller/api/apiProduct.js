@@ -34,6 +34,11 @@ const controller = {
                 product.dataValues.brand = product.dataValues.brand.name;
                 product.dataValues.model = product.dataValues.model;
                 product.dataValues.detail =  `/products/${product.dataValues.id}`;
+                product.dataValues.price = product.dataValues.price;
+                product.dataValues.colors = product.dataValues.colors
+                product.dataValues.stock = product.dataValues.stock
+                product.dataValues.image = req.headers.host + `/image/productsimages/${product.dataValues.image1}`
+
 
                 delete product.dataValues.desc1;
                 delete product.dataValues.desc2;
@@ -42,8 +47,6 @@ const controller = {
                 delete product.dataValues.image2;
                 delete product.dataValues.image3;
                 delete product.dataValues.image4;
-                delete product.dataValues.stock;
-                delete product.dataValues.price;
                 delete product.dataValues.discount;
                 delete product.dataValues.cuotas;
                 delete product.dataValues.activate;
@@ -51,7 +54,6 @@ const controller = {
                 delete product.dataValues.keywords;
                 delete product.dataValues.createdAt;
                 delete product.dataValues.updatedAt;
-                delete product.dataValues.colors;
                 delete product.dataValues.categories;
                 delete product.dataValues.sizes;
 
@@ -61,6 +63,7 @@ const controller = {
             let response = {
                 meta : {
                     count: products.length,
+                    countCat: categoryCount.length,
                     status: 200,
                     url: '/products'
                 },
@@ -71,7 +74,7 @@ const controller = {
             return res.json(response)
         }
         catch (error) {
-            return res.status(500)
+            return res.status(400)
         }
 
      
